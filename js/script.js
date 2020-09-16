@@ -18,9 +18,12 @@ const themeStart = document.createElement("option");
 //Activities variables
 const activities = document.querySelector(".activities");
 const checkboxes = document.querySelectorAll(".activities input");
-const weekendActivities = document.createElement("div")
+const weekendActivities = document.createElement("div");
 activities.appendChild(weekendActivities);
 let eventCost = 0
+
+
+//Payment Variables
 
 
 
@@ -146,3 +149,30 @@ activities.addEventListener("change", (event) => {
 
 
 
+const payment = document.getElementById("payment");
+const payPal = document.getElementById("paypal");
+const bitCoin = document.getElementById("bitcoin");
+const creditCard = document.getElementById("credit-card");
+
+payment[1].selected = true;
+payPal.style.display = "none";
+bitCoin.style.display = "none";
+
+
+payment.addEventListener("change", (event) => {
+    const chosen = event.target.value;
+
+    if (chosen === "credit card") {
+        creditCard.style.display = "block";
+        payPal.style.display = "none";
+        bitCoin.style.display = "none";
+    } else if (chosen === "paypal") {
+        payPal.style.display = "block";
+        bitCoin.style.display = "none";
+        creditCard.style.display = "none";
+    } else if (chosen === "bitcoin") {
+        bitCoin.style.display = "block";
+        creditCard.style.display = "none";
+        payPal.style.display = "none";
+    }
+})
