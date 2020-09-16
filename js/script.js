@@ -22,6 +22,17 @@ const weekendActivities = document.createElement("div")
 activities.appendChild(weekendActivities);
 let eventCost = 0
 
+
+
+
+
+
+
+
+
+
+
+
 //Function used to focus on name field when page is first loaded
 const focusName = () => {
     name.focus();
@@ -29,7 +40,13 @@ const focusName = () => {
 focusName();
 
 
-//Function to hide "other" textfield when page is first loaded
+
+
+
+
+
+
+//Function to hide "other" textfield when page is first loaded on the job role section
 
 otherTitle.style.display = "none";
 
@@ -88,7 +105,14 @@ shirtDesignSelect.addEventListener("change", (event) =>{
 
 
 
-//Activites and pricing functions
+//Activites and pricing event handler function
+//First part of function is an event listener for the activities checkboxes
+//It also helps tally up the total price based on the checkboxes clicked
+//Second part of function makes sure slelected activites do not conflict
+//Helps disable checkboxes if they will interfere with another already slected activity
+
+
+
 
 activities.addEventListener("change", (event) => {
     const clicked = event.target;
@@ -100,7 +124,6 @@ activities.addEventListener("change", (event) => {
     } else {
         eventCost = eventCost - newCost
     }
-
 
 
     weekendActivities.style.color = "black";
