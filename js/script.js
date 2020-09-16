@@ -45,8 +45,22 @@ title.addEventListener("change", (event) => {
 
 
 
+
+shirtColorOptions[0].style.display = "none";
+shirtColorOptions[1].style.display = "none";
+shirtColorOptions[2].style.display = "none";
+shirtColorOptions[3].style.display = "none";
+shirtColorOptions[4].style.display = "none";
+shirtColorOptions[5].style.display = "none";
+shirtColorOptions[0].selected = true;
+
 shirtColorSelect.appendChild(themeStart);
 themeStart.innerText = "Please select a T-shirt theme first";
+//themeStart.setAttribute("value", themeStart)
+//themeStart.selected = true;
+
+
+
 
 
 
