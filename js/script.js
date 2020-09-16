@@ -9,7 +9,8 @@ const otherTitle = document.getElementById("other-title");
 const title = document.getElementById("title");
 const shirtColorOptions = document.getElementById("color");
 const shirtDesignSelect = document.getElementById("design");
-
+const shirtColorSelect = document.getElementById("shirt-colors");
+const themeStart = document.createElement("option");
 
 //Function used to focus on name field when page is first loaded
 const focusName = () => {
@@ -44,6 +45,8 @@ title.addEventListener("change", (event) => {
 
 
 
+shirtColorSelect.appendChild(themeStart);
+themeStart.innerText = "Please select a T-shirt theme first";
 
 
 
