@@ -176,3 +176,44 @@ payment.addEventListener("change", (event) => {
         payPal.style.display = "none";
     }
 })
+
+
+
+//Name Validation
+const nameValidation = () => {
+    const custName = /^[a-zA-Z ]{2,30}$/;
+    if (custName.test(name.value)) {
+        name.style.borderColor = "green";
+        return true;
+    } else {
+        name.style.borderColor = "red";
+        return false;
+    }
+}
+
+name.addEventListener("change", () => {
+    nameValidation();
+});
+
+
+
+
+
+//Email Validation
+const email = document.getElementById("mail");
+
+const emailValidation = () => {
+    const custEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //email regex from: https://emailregex.com
+    if (custEmail.test(email.value)) {
+        email.style.borderColor = "green";
+        return true;
+    } else {
+        email.style.color.borderColor = "red";
+        return false;
+    }
+}
+
+email.addEventListener("input", () => {
+    emailValidation();
+});
