@@ -7,13 +7,11 @@ const name = document.getElementById("name");
 const otherTitle = document.getElementById("other-title");
 const title = document.getElementById("title");
 
-
 //T-shirt variables
 const shirtColorOptions = document.getElementById("color");
 const shirtDesignSelect = document.getElementById("design");
 const shirtColorSelect = document.getElementById("shirt-colors");
 const themeStart = document.createElement("option");
-
 
 //Activities variables
 const activities = document.querySelector(".activities");
@@ -22,14 +20,26 @@ const weekendActivities = document.createElement("div");
 activities.appendChild(weekendActivities);
 let eventCost = 0
 
-
 //Payment Variables
+const payment = document.getElementById("payment");
+const payPal = document.getElementById("paypal");
+const bitCoin = document.getElementById("bitcoin");
+const creditCard = document.getElementById("credit-card");
 
+//Email variable
+const userEmail = document.getElementById("mail");
 
+//Credit card variable
+const creditNumb = document.getElementById("cc-num");
 
+//Zip code variable
+const userZip = document.getElementById("zip");
 
+//CVV variable
+const userCVV = document.getElementById("cvv");
 
-
+//Submit button variable
+const form = document.querySelector("form");
 
 
 
@@ -41,11 +51,6 @@ const focusName = () => {
     name.focus();
 }
 focusName();
-
-
-
-
-
 
 
 
@@ -63,7 +68,8 @@ title.addEventListener("change", (event) => {
 });
 
 
-
+//Functions and event listeners to change available shirt colors to match with the same theme
+//Only allows correct color and theme matches
 
 shirtColorOptions[0].style.display = "none";
 shirtColorOptions[1].style.display = "none";
@@ -147,12 +153,10 @@ activities.addEventListener("change", (event) => {
 
 
 
+//Payment functions and event handlers
+//This section helps load the credit card payment option as a default
+//Hides the bitcoin and paypal options until they are selected from the dropdown menu
 
-
-const payment = document.getElementById("payment");
-const payPal = document.getElementById("paypal");
-const bitCoin = document.getElementById("bitcoin");
-const creditCard = document.getElementById("credit-card");
 
 payment[1].selected = true;
 payPal.style.display = "none";
@@ -180,14 +184,14 @@ payment.addEventListener("change", (event) => {
 
 
 
-
-
-
-//Form validation 
+//Form validation section
+//All form validators together below
 
 
 //Name Validation
 //Name regex from: https://www.regextester.com/93648
+
+
 const nameValidation = () => {
     const custName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     if (custName.test(name.value)) {
@@ -204,15 +208,8 @@ name.addEventListener("input", () => {
 });
 
 
-
-
-
-
-
-
 //Email Validation
 //Email regex from: http://emailregex.com/
-const userEmail = document.getElementById("mail");
 
 const userEmailValidation = () => {
     const testEmail =  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
@@ -234,13 +231,8 @@ userEmail.addEventListener("input", () => {
 
 
 
-
-
-
-
-
-
 //Activity validation
+
 const userActivity = document.createElement("div");
 const activityValidation = () => {
     for (let i = 0; i < checkboxes.length; i +=1) {
@@ -258,10 +250,8 @@ const activityValidation = () => {
 
 
 
-
 //Credit card validation 
 //Credit card regex from: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
-const creditNumb = document.getElementById("cc-num");
 
 const creditValidation = () => {
     const testCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
@@ -283,10 +273,6 @@ creditNumb.addEventListener("input", () => {
 
 //Zip code validation
 //Zip code regex: https://stackoverflow.com/questions/2577236/regex-for-zip-code
-
-
-const userZip = document.getElementById("zip");
-
 
 const userZipValidation = () => {
     const testZip = /^\d{5}(?:[-\s]\d{4})?$/;
@@ -310,8 +296,6 @@ userZip.addEventListener("input", () => {
 //CVV validation
 //CVV regex: https://stackoverflow.com/questions/12011792/regular-expression-matching-a-3-or-4-digit-cvv-of-a-credit-card
 
-const userCVV = document.getElementById("cvv");
-
 const cvvValidation = () => {
     const testCVV = /^[0-9]{3,4}$/;
     if (testCVV.test(userCVV.value)) {
@@ -330,10 +314,7 @@ userCVV.addEventListener("input", () => {
 
 
 
-//Sunmit button event listeners
-
-const form = document.querySelector("form");
-
+//Sunmit button event listener
 
 form.addEventListener("submit", (e) => {
     if (!nameValidation()) {
@@ -357,10 +338,4 @@ form.addEventListener("submit", (e) => {
         }
     }
 });
-
-
-
-
-
-
 
