@@ -71,6 +71,10 @@ title.addEventListener("change", (event) => {
 //Functions and event listeners to change available shirt colors to match with the same theme
 //Only allows correct color and theme matches
 
+shirtColorSelect.appendChild(themeStart);
+shirtColorOptions.hidden = true;
+themeStart.innerText = "Please select a T-shirt theme first";
+
 shirtColorOptions[0].style.display = "none";
 shirtColorOptions[1].style.display = "none";
 shirtColorOptions[2].style.display = "none";
@@ -79,14 +83,11 @@ shirtColorOptions[4].style.display = "none";
 shirtColorOptions[5].style.display = "none";
 shirtColorOptions[0].selected = true;
 
-shirtColorSelect.appendChild(themeStart);
-themeStart.innerText = "Please select a T-shirt theme first";
-
 
 
 
 shirtDesignSelect.addEventListener("change", (event) =>{
-    
+    shirtColorOptions.hidden = false;
     if(event.target.value === "js puns"){
         shirtColorOptions[0].style.display = "block";
         shirtColorOptions[1].style.display = "block";
@@ -95,6 +96,7 @@ shirtDesignSelect.addEventListener("change", (event) =>{
         shirtColorOptions[4].style.display = "none";
         shirtColorOptions[5].style.display = "none";
         shirtColorOptions[0].selected = true;
+        themeStart.innerText = "";
     }
 
 
@@ -107,6 +109,13 @@ shirtDesignSelect.addEventListener("change", (event) =>{
         shirtColorOptions[4].style.display = "block";
         shirtColorOptions[5].style.display = "block";
         shirtColorOptions[3].selected = true;
+        themeStart.innerText = "";
+    }
+
+
+    if(event.target.value === "Select Theme"){
+        shirtColorOptions.hidden = true;
+        themeStart.innerText = "Please select a T-shirt theme first";
     }
 
 });
