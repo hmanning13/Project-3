@@ -245,12 +245,12 @@ const userActivity = document.createElement("div");
 const activityValidation = () => {
     for (let i = 0; i < checkboxes.length; i +=1) {
         if(checkboxes[i].checked) {
-            userActivity.style.color = "black";
-            userActivity.textContent = `Total Cost: $${eventCost}`
+            weekendActivities.style.color = "black";
+            weekendActivities.textContent = `Total Cost: $${eventCost}`
             return true;
         } else {
-            userActivity.style.color = "red";
-            userActivity.textContent = "Please select at least one activity!"
+            weekendActivities.style.color = "red";
+            weekendActivities.textContent = "Please select at least one activity!"
         }
     } return false;
 }
@@ -282,6 +282,8 @@ creditNumb.addEventListener("input", () => {
 
 
 //Zip code validation
+//Zip code regex: https://stackoverflow.com/questions/2577236/regex-for-zip-code
+
 
 const userZip = document.getElementById("zip");
 
@@ -301,3 +303,64 @@ const userZipValidation = () => {
 userZip.addEventListener("input", () => {
     userZipValidation();
 });
+
+
+
+
+//CVV validation
+//CVV regex: https://stackoverflow.com/questions/12011792/regular-expression-matching-a-3-or-4-digit-cvv-of-a-credit-card
+
+const userCVV = document.getElementById("cvv");
+
+const cvvValidation = () => {
+    const testCVV = /^[0-9]{3,4}$/;
+    if (testCVV.test(userCVV.value)) {
+        userCVV.style.borderColor = "green";
+        return true;
+    } else {
+        userCVV.style.borderColor = "red";
+        return false;
+    }
+}
+
+
+userCVV.addEventListener("input", () => {
+    cvvValidation();
+});
+
+
+
+//Sunmit button event listeners
+
+const form = document.querySelector("form");
+
+
+form.addEventListener("submit", (e) => {
+    if (!nameValidation()) {
+        e.preventDefault();
+    }
+    if (!userEmailValidation()) {
+        e.preventDefault();
+    }
+    if (!activityValidation()) {
+        e.preventDefault();
+    }
+    if (payment[1].selected === true) {
+        if(!creditValidation()) {
+            e.preventDefault();
+        }
+        if (!userZipValidation()) {
+            e.preventDefault();
+        }
+        if (!cvvValidation()) {
+            e.preventDefault();
+        }
+    }
+});
+
+
+
+
+
+
+
