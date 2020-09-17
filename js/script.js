@@ -25,7 +25,6 @@ const payment = document.getElementById("payment");
 const payPal = document.getElementById("paypal");
 const bitCoin = document.getElementById("bitcoin");
 const creditCard = document.getElementById("credit-card");
-const selectPay = document.getElementById("select-method");
 
 //Email variable
 const userEmail = document.getElementById("mail");
@@ -41,9 +40,6 @@ const userCVV = document.getElementById("cvv");
 
 //Submit button variable
 const form = document.querySelector("form");
-
-
-
 
 
 
@@ -71,9 +67,10 @@ title.addEventListener("change", (event) => {
 
 //Functions and event listeners to change available shirt colors to match with the same theme
 //Only allows correct color and theme matches
-
-shirtColorSelect.appendChild(themeStart);
+//Hides the color dropdown menu when a theme is not selected
+//Once a theme is selected, it then adds only corresponding color choices to the menu
 shirtColorOptions.hidden = true;
+shirtColorSelect.appendChild(themeStart);
 themeStart.innerText = "Please select a T-shirt theme first";
 
 shirtColorOptions[0].style.display = "none";
@@ -123,13 +120,11 @@ shirtDesignSelect.addEventListener("change", (event) =>{
 
 
 
-
 //Activites and pricing event handler function
 //First part of function is an event listener for the activities checkboxes
 //It also helps tally up the total price based on the checkboxes clicked
 //Second part of function makes sure slelected activites do not conflict
 //Helps disable checkboxes if they will interfere with another already slected activity
-
 
 
 
@@ -166,6 +161,7 @@ activities.addEventListener("change", (event) => {
 //Payment functions and event handlers
 //This section helps load the credit card payment option as a default
 //Hides the bitcoin and paypal options until they are selected from the dropdown menu
+//If user goes back to select payment method it hides all the payment fields
 
 
 payment[1].selected = true;
@@ -223,7 +219,8 @@ name.addEventListener("input", () => {
 
 
 //Email Validation
-//Email regex from: http://emailregex.com/
+//Email regex from: https://www.wired.com/2008/08/four-regular-expressions-to-check-email-addresses/
+//Helps validate real email addresses in real time
 
 const userEmailValidation = () => {
     const testEmail =  /([a-z0-9][-a-z0-9_\+\.]*[a-z0-9])@([a-z0-9][-a-z0-9\.]*[a-z0-9]\.(arpa|root|aero|biz|cat|com|coop|edu|gov|info|int|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cu|cv|cx|cy|cz|de|dj|dk|dm|do|dz|ec|ee|eg|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|sk|sl|sm|sn|so|sr|st|su|sv|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|um|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw)|([0-9]{1,3}\.{3}[0-9]{1,3}))/;
