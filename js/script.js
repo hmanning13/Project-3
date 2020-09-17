@@ -179,9 +179,17 @@ payment.addEventListener("change", (event) => {
 
 
 
+
+
+
+
+//Form validation 
+
+
 //Name Validation
+//Name regex from: https://www.regextester.com/93648
 const nameValidation = () => {
-    const custName = /^[a-zA-Z ]{2,30}$/;
+    const custName = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
     if (custName.test(name.value)) {
         name.style.borderColor = "green";
         return true;
@@ -191,7 +199,7 @@ const nameValidation = () => {
     }
 }
 
-name.addEventListener("change", () => {
+name.addEventListener("input", () => {
     nameValidation();
 });
 
@@ -199,12 +207,12 @@ name.addEventListener("change", () => {
 
 
 
+
+
+
 //Email Validation
+//Email regex from: http://emailregex.com/
 const userEmail = document.getElementById("mail");
-
-
-
-
 
 const userEmailValidation = () => {
     const testEmail =  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
@@ -229,3 +237,42 @@ userEmail.addEventListener("input", () => {
 
 
 
+
+
+
+//Activity validation
+const userActivity = document.createElement("div");
+const activityValidation = () => {
+    for (let i = 0; i < checkboxes.length; i +=1) {
+        if(checkboxes[i].checked) {
+            userActivity.style.color = "black";
+            userActivity.textContent = `Total Cost: $${eventCost}`
+            return true;
+        } else {
+            userActivity.style.color = "red";
+            userActivity.textContent = "Please select at least one activity!"
+        }
+    } return false;
+}
+
+
+
+
+
+//Credit card validation 
+const creditNumb = document.getElementById("cc-num");
+
+const creditValidation = () => {
+    const testCard = /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/;
+    if (testCard.test(creditNumb.value)) {
+        creditNumb.style.borderColor = "green";
+        return true;
+    } else {
+        creditNumb.style.borderColor = "red";
+        return false;
+    }
+}
+
+creditNumb.addEventListener("input", () => {
+    creditValidation();
+});
