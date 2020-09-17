@@ -260,6 +260,7 @@ const activityValidation = () => {
 
 
 //Credit card validation 
+//Credit card regex from: https://stackoverflow.com/questions/9315647/regex-credit-card-number-tests
 const creditNumb = document.getElementById("cc-num");
 
 const creditValidation = () => {
@@ -275,4 +276,28 @@ const creditValidation = () => {
 
 creditNumb.addEventListener("input", () => {
     creditValidation();
+});
+
+
+
+
+//Zip code validation
+
+const userZip = document.getElementById("zip");
+
+
+const userZipValidation = () => {
+    const testZip = /^\d{5}(?:[-\s]\d{4})?$/;
+    if (testZip.test(userZip.value)) {
+        userZip.style.borderColor = "green";
+        return true;
+    } else {
+        userZip.style.borderColor = "red";
+        return false;
+    }
+}
+
+
+userZip.addEventListener("input", () => {
+    userZipValidation();
 });
